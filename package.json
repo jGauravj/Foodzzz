@@ -1,0 +1,26 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "This is React by Gaurav Jangir",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest",
+    "start": "rm -rf .parcel-cache && parcel",
+    "build": "rm -rf .parcel-cache && parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/jGauravj/namaste-react)"
+  },
+  "author": "Gaurav Jangir",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
