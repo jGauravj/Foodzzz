@@ -18,3 +18,24 @@
 - HTTPs
 - Tree Shaking - remove unused code 
 - Different dev and production bundles
+
+
+# Food app Structure --->
+
+ * Header
+ *  - Logo
+ *  - Nav item
+ *
+ * Body
+ *  - Search
+ *  - RestaurantContainer
+ *  - ResturantCard
+ *    - Img
+ *    - Name of Res, Star Rating, cuisine, delery tie
+ *
+ * Footer
+ *  - Copyright
+ *  - Links
+ *  - Address
+ *  - Contact
+ 
