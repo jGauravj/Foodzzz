@@ -18,7 +18,7 @@ const RestaurantCard = ({ resData }) => {
       />
 
       <div className="card-contant">
-        <h3>{name}</h3>
+        <h3 className="res-title">{name}</h3>
         <p>{cuisines.join(", ")}</p>
         <p>{avgRating} stars</p>
         <p>{costForTwo}</p>

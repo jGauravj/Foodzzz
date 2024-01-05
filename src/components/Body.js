@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -13,19 +14,27 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.9168781&lng=75.734032&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    try {
+      const data = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.9168781&lng=75.734032&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
 
-    const json = await data.json();
+      const json = await data.json();
 
-    setListOfRestaurant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+      console.log(json);
 
-    SetFilteredRestaurant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+      setListOfRestaurant(
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+
+      SetFilteredRestaurant(
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+    } catch (error) {
+      console.error("Error fetching data", error);
+    }
   };
 
   return listOfRestaurant.length === 0 ? (
@@ -41,8 +50,8 @@ const Body = () => {
             value={searchText}
             onChange={(e) => {
               SetSearchText(e.target.value);
-              if(!e.target.value){
-                SetFilteredRestaurant(listOfRestaurant)
+              if (!e.target.value) {
+                SetFilteredRestaurant(listOfRestaurant);
               }
             }}
           />
@@ -75,7 +84,13 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredReastaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+          <Link
+            className="costom-link"
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
