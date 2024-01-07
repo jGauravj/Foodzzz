@@ -1,7 +1,9 @@
+import User from "./User"
+
 const AboutUs = () => {
   return (
     <div className="about-us">
-      <h1>About us..</h1>
+      <User name = {"Gaurav Jangir"} contact= {"gouraw1@gmail.com"}/>
     </div>
   )
 }

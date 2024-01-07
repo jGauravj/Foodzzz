@@ -1,26 +1,27 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constent";
-
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+// import { MENU_API } from "../utils/constent";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+  // const [resInfo, setResInfo] = useState(null);
 
   const { resId } = useParams();
+  const resInfo = useRestaurantMenu(resId);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-    const data = await fetch(MENU_API + resId);
+  // const fetchData = async () => {
+  //   const data = await fetch(MENU_API + resId);
 
-    const json = await data.json();
-    console.log(json);
-    
-    setResInfo(json.data);
-  };
+  //   const json = await data.json();
+  //   console.log(json);
+
+  //   setResInfo(json.data);
+  // };
 
   if (resInfo === null) return <Shimmer />;
 
@@ -28,9 +29,9 @@ const RestaurantMenu = () => {
     resInfo?.cards[0]?.card?.card?.info;
 
   const { itemCards } =
-    resInfo.cards[2].groupedCard.cardGroupMap.REGULAR.cards[2].card.card;
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
-    // console.log(resInfo.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card)
+  // console.log(resInfo.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card)
 
   return (
     <div className="menu">
@@ -39,12 +40,14 @@ const RestaurantMenu = () => {
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
       <ul>
-        {itemCards && itemCards.length > 0 && itemCards.map((item) => (
-          <li key={item.card.info.id}>
-            {item.card.info.name} - {"Rs. "}
-            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-          </li>
-        ))}
+        {itemCards &&
+          itemCards.length > 0 &&
+          itemCards.map((item) => (
+            <li key={item.card.info.id}>
+              {item.card.info.name} - {"Rs. "}
+              {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
+            </li>
+          ))}
       </ul>
     </div>
   );
