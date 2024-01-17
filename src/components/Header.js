@@ -2,6 +2,7 @@ import logo from "../../assets/logo.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { FaCircle } from "react-icons/fa";
 
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login");
@@ -20,8 +21,18 @@ const Header = () => {
 
       <div className="flex items-center pr-7">
         <ul className="flex space-x-7 items-center text-sm text-slate-700 font-medium">
-          <li className="hover:text-orange-400 cursor-pointer">
-            {onlineStatus ? "Online" + " 🟢" : "Offline" + " 🔴"}
+          <li className="hover:text-orange-400 cursor-pointer flex">
+            {onlineStatus ? (
+              <>
+                Online
+                <FaCircle className="text-[8px] mt-2 ml-1 text-green-500" />
+              </>
+            ) : (
+              <>
+                Offline
+                <FaCircle className="text-[8px] mt-2 ml-1 text-red-500" />
+              </>
+            )}
           </li>
           <li className="hover:text-orange-400">
             <Link to="/">Home</Link>

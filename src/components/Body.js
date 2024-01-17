@@ -113,14 +113,14 @@ const Body = () => {
         </button>
       </div>
       <div className="flex justify-center">
-        <div className="grid grid-cols-4 gap-x-9 gap-y-5 ">
+        <div className="grid grid-cols-4 gap-x-9 gap-y-6 ">
           {filteredReastaurant.map((restaurant) => (
             <Link
               className="costom-link"
               key={restaurant.info.id}
               to={"/restaurants/" + restaurant.info.id}
             >
-              <RestaurantCard resData={restaurant} />
+                <RestaurantCard resData={restaurant} />
             </Link>
           ))}
         </div>

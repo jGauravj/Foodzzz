@@ -18,7 +18,7 @@ const RestaurantCard = ({ resData }) => {
           {name}
         </h3>
         <div className="flex">
-          <FaStar className="mt-1 text-base text-orange-400" />
+          <FaStar className="mt-0.5 text-base text-orange-400" />
           <p className="text-sm ml-1 font-semibold text-gray-700">
             {avgRating}
           </p>
@@ -33,5 +33,4 @@ const RestaurantCard = ({ resData }) => {
     </div>
   );
 };
-
 export default RestaurantCard;
